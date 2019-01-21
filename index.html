@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Javascript Clock</title>
+    <style media ="screen">
+      body{
+        margin: 20% 40%;
+        /*whats outside the box*/
+        background: rgba(15, 15, 88, 1);
+        color:#fff;
+      }
+      div{
+        position: relative;
+        margin-left: 8px;
+        margin-right: 8px;
+        text-align: center;
+        width: 84px;
+        height: 84px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        padding: 15px;
+        /*whats inside the box*/
+        display: inline;
+        font-size: 25px;
+      }
+      </style>
+
+      <script type ="text/javascript">
+        function changeTime(){
+          var today = new Date();
+          var hr = today.getHours();
+          var mm = today.getMinutes();
+          var se = today.getSeconds();
+
+          hr = checkTime(hr);
+          mm = checkTime(mm);
+          se = checkTime(se);
+
+          document.getElementById('hr').innerHTML = hr;
+          /*changes value inside of elem*/
+          document.getElementById('mm').innerHTML = mm;
+          document.getElementById('se').innerHTML = se;
+
+          var t = setTimeout("changeTime()",500);
+        }
+
+        function checkTime(id){
+          if(id < 10){
+            id = "0" + id;
+          }
+          return id;
+        }
+      </script>
+  </head>
+  <body onload="changeTime()">
+    <div id ="hr">00</div>:<div id="mm">00</div>:<div id="se">00</div>
+  </body>
+</html>
